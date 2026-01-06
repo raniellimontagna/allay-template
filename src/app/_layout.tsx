@@ -10,7 +10,7 @@ import { TamaguiProvider, Theme } from 'tamagui';
 import { OfflineBanner } from '@/components/ui/offlineBanner';
 import { Toast } from '@/components/ui/toast';
 import { useLoadFonts } from '@/hooks';
-import { QueryProvider } from '@/providers';
+import { I18nProvider, QueryProvider } from '@/providers';
 import { useAppStore } from '@/stores';
 import config from '@/theme/tamagui.config';
 
@@ -31,22 +31,24 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
-      <QueryProvider>
-        <TamaguiProvider config={config}>
-          <Theme name={theme}>
-            <BottomSheetModalProvider>
-              <ToastProvider>
-                <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-                <OfflineBanner />
-                <Stack screenOptions={{ headerShown: false }} />
-                <Toast />
-                <ToastViewport flexDirection="column-reverse" top="$8" left={0} right={0} />
-              </ToastProvider>
-            </BottomSheetModalProvider>
-          </Theme>
-        </TamaguiProvider>
-      </QueryProvider>
-    </GestureHandlerRootView>
+    <I18nProvider>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <QueryProvider>
+          <TamaguiProvider config={config}>
+            <Theme name={theme}>
+              <BottomSheetModalProvider>
+                <ToastProvider>
+                  <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+                  <OfflineBanner />
+                  <Stack screenOptions={{ headerShown: false }} />
+                  <Toast />
+                  <ToastViewport flexDirection="column-reverse" top="$8" left={0} right={0} />
+                </ToastProvider>
+              </BottomSheetModalProvider>
+            </Theme>
+          </TamaguiProvider>
+        </QueryProvider>
+      </GestureHandlerRootView>
+    </I18nProvider>
   );
 }

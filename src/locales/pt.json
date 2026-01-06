@@ -1,0 +1,54 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "save": "Salvar",
+    "delete": "Excluir",
+    "edit": "Editar",
+    "close": "Fechar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "done": "Concluído",
+    "retry": "Tentar novamente",
+    "search": "Buscar",
+    "noResults": "Nenhum resultado encontrado",
+    "offline": "Sem conexão com a internet"
+  },
+  "tabs": {
+    "home": "Início",
+    "explore": "Explorar",
+    "settings": "Configurações"
+  },
+  "home": {
+    "title": "Início",
+    "welcome": "Bem-vindo à aba inicial",
+    "themeChanged": "Tema Alterado",
+    "switchedTo": "Alterado para modo {{mode}}",
+    "lightMode": "Modo Claro",
+    "darkMode": "Modo Escuro"
+  },
+  "explore": {
+    "title": "Explorar",
+    "description": "Descubra novos conteúdos e funcionalidades",
+    "openSheet": "Abrir Bottom Sheet",
+    "sheetTitle": "Conteúdo do Bottom Sheet",
+    "sheetDescription": "Este é um exemplo do componente bottom sheet. Você pode adicionar qualquer conteúdo aqui."
+  },
+  "settings": {
+    "title": "Configurações",
+    "description": "Gerencie as preferências do aplicativo",
+    "reset": "Redefinir Configurações",
+    "resetSuccess": "Configurações Redefinidas",
+    "resetMessage": "Todas as configurações foram redefinidas para o padrão",
+    "language": "Idioma",
+    "theme": "Tema"
+  },
+  "languages": {
+    "en": "Inglês",
+    "pt": "Português",
+    "es": "Espanhol"
+  }
+}

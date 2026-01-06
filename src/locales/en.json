@@ -1,0 +1,54 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "retry": "Retry",
+    "search": "Search",
+    "noResults": "No results found",
+    "offline": "No internet connection"
+  },
+  "tabs": {
+    "home": "Home",
+    "explore": "Explore",
+    "settings": "Settings"
+  },
+  "home": {
+    "title": "Home",
+    "welcome": "Welcome to the home tab",
+    "themeChanged": "Theme Changed",
+    "switchedTo": "Switched to {{mode}} mode",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode"
+  },
+  "explore": {
+    "title": "Explore",
+    "description": "Discover new content and features",
+    "openSheet": "Open Bottom Sheet",
+    "sheetTitle": "Bottom Sheet Content",
+    "sheetDescription": "This is an example of the bottom sheet component. You can add any content here."
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Manage your app preferences",
+    "reset": "Reset All Settings",
+    "resetSuccess": "Settings Reset",
+    "resetMessage": "All settings have been reset to defaults",
+    "language": "Language",
+    "theme": "Theme"
+  },
+  "languages": {
+    "en": "English",
+    "pt": "Portuguese",
+    "es": "Spanish"
+  }
+}
