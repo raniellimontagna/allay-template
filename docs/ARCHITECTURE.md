@@ -1,0 +1,142 @@
+# Architecture
+
+This document describes the architecture and technical decisions of the template.
+
+## Overview
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                         App                             │
+├─────────────────────────────────────────────────────────┤
+│  ┌─────────────┐  ┌─────────────┐  ┌─────────────────┐  │
+│  │ Expo Router │  │   Tamagui   │  │     Zustand     │  │
+│  │ (Navigation)│  │   (UI/UX)   │  │ (Global State)  │  │
+│  └─────────────┘  └─────────────┘  └─────────────────┘  │
+├─────────────────────────────────────────────────────────┤
+│                    React Native                         │
+├─────────────────────────────────────────────────────────┤
+│                     Expo SDK 54                         │
+└─────────────────────────────────────────────────────────┘
+```
+
+## Layers
+
+### 1. `src/app/` - Routes (Expo Router)
+
+Defines app navigation using file-based routing.
+
+- `_layout.tsx` - Root layout (providers, navigation configuration)
+- `index.tsx` - Home screen (`/`)
+- `[slug].tsx` - Dynamic routes
+- `(group)/` - Route groups (shared layouts)
+
+### 2. `src/components/` - UI Components
+
+Reusable components built with Tamagui.
+
+```
+components/
+├── ui/           # Base components (Button, Input, Card)
+├── layout/       # Layout components (Container, Header)
+└── features/     # Feature-specific components
+```
+
+### 3. `src/stores/` - Global State (Zustand)
+
+State management with Zustand.
+
+```typescript
+import { create } from 'zustand';
+
+interface AppStore {
+  theme: 'light' | 'dark';
+  setTheme: (theme: 'light' | 'dark') => void;
+}
+
+export const useAppStore = create<AppStore>((set) => ({
+  theme: 'light',
+  setTheme: (theme) => set({ theme }),
+}));
+```
+
+### 4. `src/hooks/` - Custom Hooks
+
+Reusable logic encapsulated in hooks.
+
+```
+hooks/
+├── useAuth.ts        # Authentication
+├── useApi.ts         # API calls
+└── useStorage.ts     # AsyncStorage wrapper
+```
+
+### 5. `src/theme/` - Tamagui Config
+
+Design system configuration.
+
+```
+theme/
+├── tamagui.config.ts   # Main config
+├── tokens.ts           # Colors, spacing, etc.
+└── themes.ts           # Light/dark themes
+```
+
+### 6. `src/types/` - TypeScript Types
+
+Global types and interfaces.
+
+```
+types/
+├── api.ts          # API response types
+├── navigation.ts   # Navigation types
+└── models.ts       # Data models
+```
+
+### 7. `src/utils/` - Utilities
+
+Pure helper functions.
+
+```
+utils/
+├── format.ts       # Formatting (dates, currency)
+├── validation.ts   # Data validation
+└── storage.ts      # AsyncStorage helpers
+```
+
+## Data Flow
+
+```
+User Action
+    │
+    ▼
+┌─────────┐     ┌─────────┐     ┌─────────┐
+│  View   │────▶│  Store  │────▶│   API   │
+│ (Screen)│◀────│(Zustand)│◀────│(Backend)│
+└─────────┘     └─────────┘     └─────────┘
+```
+
+1. **View** dispatches action (e.g., button clicked)
+2. **Store** updates state and/or makes API call
+3. **View** re-renders with new state
+
+## Technical Decisions
+
+### Why Expo?
+- Zero config to start
+- OTA updates with EAS
+- `npx expo prebuild` when native code is needed
+
+### Why Expo Router?
+- File-based routing (similar to Next.js)
+- Automatic deep linking
+- Typed routes
+
+### Why Tamagui?
+- Native performance (compiles to StyleSheet)
+- Consistent design tokens
+- Supports web + mobile
+
+### Why Zustand?
+- Simple and lightweight (~1KB)
+- No boilerplate (vs Redux)
+- Easy to type with TypeScript
