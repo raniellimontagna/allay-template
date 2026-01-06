@@ -13,6 +13,7 @@ Functional template for React Native apps using Expo, Tamagui, Expo Router, and 
 | Biome | 2.x | Linting and formatting |
 | Zustand | 5.x | State management |
 | Solar Icons | 1.x | Icon library |
+| Inter | - | Custom font (Google Fonts) |
 
 ## 📁 Project Structure
 

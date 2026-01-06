@@ -12,6 +12,10 @@ This document describes the architecture and technical decisions of the template
 │  │ Expo Router │  │   Tamagui   │  │     Zustand     │  │
 │  │ (Navigation)│  │   (UI/UX)   │  │ (Global State)  │  │
 │  └─────────────┘  └─────────────┘  └─────────────────┘  │
+│  ┌─────────────┐  ┌─────────────┐                       │
+│  │ Solar Icons │  │    Biome    │                       │
+│  │   (Icons)   │  │(Lint/Format)│                       │
+│  └─────────────┘  └─────────────┘                       │
 ├─────────────────────────────────────────────────────────┤
 │                    React Native                         │
 ├─────────────────────────────────────────────────────────┤
@@ -46,17 +50,29 @@ components/
 State management with Zustand.
 
 ```typescript
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
+import { createJSONStorage, persist } from 'zustand/middleware';
 
 interface AppStore {
   theme: 'light' | 'dark';
   setTheme: (theme: 'light' | 'dark') => void;
+  toggleTheme: () => void;
 }
 
-export const useAppStore = create<AppStore>((set) => ({
-  theme: 'light',
-  setTheme: (theme) => set({ theme }),
-}));
+export const useAppStore = create<AppStore>()(
+  persist(
+    (set, get) => ({
+      theme: 'dark',
+      setTheme: (theme) => set({ theme }),
+      toggleTheme: () => set({ theme: get().theme === 'dark' ? 'light' : 'dark' }),
+    }),
+    {
+      name: 'app-storage',
+      storage: createJSONStorage(() => AsyncStorage),
+    }
+  )
+);
 ```
 
 ### 4. `src/hooks/` - Custom Hooks

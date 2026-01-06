@@ -52,6 +52,13 @@ interface ButtonProps {
   onPress: () => void;
   variant?: 'primary' | 'secondary';
 }
+
+### Strict Typing
+
+**Rule: Avoid `any` at all costs.**
+
+Use `unknown` if the type is truly not known yet, or specific utility types. If a library has wrong types, use `@ts-expect-error` with a justification comment instead of casting to `any`.
+
 ```
 
 ## Component Structure
@@ -60,9 +67,10 @@ Every component must have a local hook separating logic from rendering:
 
 ```
 src/components/ui/button/
-├── button.tsx        # Rendering only (UI)
-├── useButton.ts      # Component logic (state, handlers)
-├── button.types.ts   # Types and interfaces (optional)
+├── newComponent.tsx      # Rendering only (UI)
+├── useNewComponent.ts    # Component logic (state, handlers)
+├── newComponent.styles.ts # Styled components definitions
+├── newComponent.types.ts   # Types and interfaces (optional)
 └── index.ts          # Re-export
 ```
 
@@ -255,6 +263,36 @@ Configured in `tsconfig.json`:
   }
 }
 ```
+
+## Icons
+
+Using Solar Icons for React Native:
+
+```typescript
+import { HomeLinear, HomeBold, SettingsLinear } from '@solar-icons/react-native';
+
+// Linear style (outline)
+<HomeLinear size={24} color="white" />
+
+// Bold style (filled)
+<HomeBold size={24} color="$color" />
+
+// With Tamagui theme color
+<SettingsLinear size={20} color={theme === 'dark' ? 'white' : 'black'} />
+```
+
+### Available Styles
+
+| Style | Suffix | Example |
+|-------|--------|---------|
+| Outline | `*Linear` | `SunLinear` |
+| Filled | `*Bold` | `SunBold` |
+| Duotone | `*BoldDuotone` | `SunBoldDuotone` |
+| Broken | `*Broken` | `SunBroken` |
+
+### Browse Icons
+
+Visit [Solar Icons](https://www.figma.com/community/file/1166831539721848736) to browse available icons.
 
 ## Comments
 

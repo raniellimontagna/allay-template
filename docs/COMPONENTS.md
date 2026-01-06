@@ -116,20 +116,19 @@ import { Container } from '@/components/layout/container';
 </Container>
 ```
 
-### SafeArea (to create)
-
+### SafeAreaContainer
 ```tsx
-import { SafeArea } from '@/components/layout/safeArea';
+import { SafeAreaContainer } from '@/components/layout/safe-area-container';
 
-// Respects device safe areas
-<SafeArea>
+// Respects device safe areas with default edges (all)
+<SafeAreaContainer>
   <Text>Safe content</Text>
-</SafeArea>
+</SafeAreaContainer>
 
 // With specific edges
-<SafeArea edges={['top', 'bottom']}>
+<SafeAreaContainer edges={['top', 'bottom']}>
   <Text>Content</Text>
-</SafeArea>
+</SafeAreaContainer>
 ```
 
 ## Creating New Components
