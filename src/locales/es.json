@@ -44,7 +44,13 @@
     "resetSuccess": "Configuración Restablecida",
     "resetMessage": "Todas las configuraciones han sido restablecidas a los valores predeterminados",
     "language": "Idioma",
-    "theme": "Tema"
+    "theme": {
+      "title": "Tema",
+      "light": "Claro",
+      "lightDescription": "Brillante y claro",
+      "dark": "Oscuro",
+      "darkDescription": "Fácil para los ojos"
+    }
   },
   "languages": {
     "en": "Inglés",

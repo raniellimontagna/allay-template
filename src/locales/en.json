@@ -44,7 +44,13 @@
     "resetSuccess": "Settings Reset",
     "resetMessage": "All settings have been reset to defaults",
     "language": "Language",
-    "theme": "Theme"
+    "theme": {
+      "title": "Theme",
+      "light": "Light",
+      "lightDescription": "Bright and clear",
+      "dark": "Dark",
+      "darkDescription": "Easy on the eyes"
+    }
   },
   "languages": {
     "en": "English",

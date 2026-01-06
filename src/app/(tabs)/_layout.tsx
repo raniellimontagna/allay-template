@@ -1,4 +1,4 @@
-import { HomeLinear, InfoCircleLinear, SettingsLinear } from '@solar-icons/react-native';
+import { CompassLinear, HomeSmileLinear, SettingsLinear } from '@solar-icons/react-native';
 import { Tabs } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from 'tamagui';
@@ -28,14 +28,14 @@ export default function TabsLayout() {
         name="index"
         options={{
           title: t('tabs.home'),
-          tabBarIcon: ({ color, size }) => <HomeLinear color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <HomeSmileLinear color={color} size={size} />,
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: t('tabs.explore'),
-          tabBarIcon: ({ color, size }) => <InfoCircleLinear color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <CompassLinear color={color} size={size} />,
         }}
       />
       <Tabs.Screen
