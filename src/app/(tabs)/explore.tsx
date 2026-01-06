@@ -1,10 +1,12 @@
-import { CompassLinear } from '@solar-icons/react-native';
-import { H1, Text, useTheme, YStack } from 'tamagui';
+import { CompassLinear, ListLinear } from '@solar-icons/react-native';
+import { Button, H1, H2, Text, useTheme, YStack } from 'tamagui';
 
 import { SafeAreaContainer } from '@/components';
+import { BottomSheet, useBottomSheet } from '@/components/ui';
 
 export default function ExploreTab() {
   const theme = useTheme();
+  const sheet = useBottomSheet();
 
   return (
     <SafeAreaContainer edges={['top']}>
@@ -24,7 +26,26 @@ export default function ExploreTab() {
         <Text color="$color11" text="center">
           Discover new content and features
         </Text>
+
+        <Button size="$4" onPress={sheet.open}>
+          <Button.Icon>
+            <ListLinear size={18} />
+          </Button.Icon>
+          <Button.Text>Open Bottom Sheet</Button.Text>
+        </Button>
       </YStack>
+
+      <BottomSheet isOpen={sheet.isOpen} onClose={sheet.close} snapPoints={['40%', '80%']}>
+        <YStack p="$4" gap="$4">
+          <H2 size="$5">Bottom Sheet Content</H2>
+          <Text color="$color11">
+            This is an example of the bottom sheet component. You can add any content here.
+          </Text>
+          <Button size="$3" variant="outlined" onPress={sheet.close}>
+            <Button.Text>Close</Button.Text>
+          </Button>
+        </YStack>
+      </BottomSheet>
     </SafeAreaContainer>
   );
 }

@@ -174,6 +174,65 @@ import { Loading } from '@/components/ui/loading';
 <Loading color="#FF0000" />
 ```
 
+### BottomSheet
+Modal bottom sheet component powered by `@gorhom/bottom-sheet`.
+
+```tsx
+import { BottomSheet, useBottomSheet } from '@/components/ui';
+
+// Using the hook for state management
+const sheet = useBottomSheet();
+
+// Button to open
+<Button onPress={sheet.open}>Open Sheet</Button>
+
+// BottomSheet component
+<BottomSheet 
+  isOpen={sheet.isOpen} 
+  onClose={sheet.close}
+  snapPoints={['40%', '80%']}  // Optional, default: ['50%']
+>
+  <YStack p="$4">
+    <Text>Sheet content here</Text>
+    <Button onPress={sheet.close}>Close</Button>
+  </YStack>
+</BottomSheet>
+```
+
+**Props:**
+- `isOpen` - Whether the sheet is visible
+- `onClose` - Callback when dismissed
+- `snapPoints` - Array of snap positions (e.g., `['25%', '50%', '90%']`)
+- `enablePanDownToClose` - Allow swipe down to close (default: true)
+- `handleIndicator` - Show the drag handle (default: true)
+
+## Hooks
+
+### useHaptics
+Haptic feedback hook for tactile interactions.
+
+```tsx
+import { useHaptics } from '@/hooks';
+
+const { light, medium, heavy, success, warning, error, selection } = useHaptics();
+
+// Impact feedback
+<Button onPress={() => { light(); doAction(); }}>Light Tap</Button>
+<Button onPress={() => { medium(); doAction(); }}>Medium Tap</Button>
+<Button onPress={() => { heavy(); doAction(); }}>Heavy Tap</Button>
+
+// Notification feedback
+success();  // After successful action
+warning();  // For warnings
+error();    // For errors
+
+// Selection feedback (for pickers)
+selection();
+
+// Check if supported
+const { isSupported } = useHaptics(); // true on iOS/Android
+```
+
 ## Creating New Components
 
 ### 1. Folder structure
