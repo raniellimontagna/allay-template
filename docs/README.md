@@ -12,6 +12,8 @@ Functional template for React Native apps using Expo, Tamagui, Expo Router, and 
 | Tamagui | 1.x | Design system |
 | Biome | 2.x | Linting and formatting |
 | Zustand | 5.x | State management |
+| React Query | 5.x | Server state management |
+| Axios | 1.x | HTTP client |
 | Solar Icons | 1.x | Icon library |
 | Inter | - | Custom font (Google Fonts) |
 
@@ -28,11 +30,12 @@ allay-template-with-tamagui/
 │   ├── app/               # Routes (Expo Router)
 │   ├── components/        # Reusable components
 │   ├── hooks/             # Custom hooks
+│   ├── providers/         # React providers (Query, etc.)
+│   ├── services/          # API services and clients
 │   ├── stores/            # Zustand stores
 │   ├── theme/             # Tamagui configuration
 │   ├── types/             # TypeScript types
 │   └── utils/             # Utility functions
-├── __tests__/             # Unit and integration tests
 ├── assets/                # Images, fonts, etc.
 ├── app.json               # Expo configuration
 ├── babel.config.js        # Babel configuration

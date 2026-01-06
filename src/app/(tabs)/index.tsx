@@ -1,27 +1,22 @@
 import { MoonLinear, SunLinear } from '@solar-icons/react-native';
-import { Link } from 'expo-router';
 import { Button, H1, Text, XStack, YStack } from 'tamagui';
 
 import { SafeAreaContainer } from '@/components';
 import { useToast } from '@/components/ui';
 import { useAppStore } from '@/stores';
 
-export default function HomeScreen() {
+export default function HomeTab() {
   const theme = useAppStore((state) => state.theme);
   const toggleTheme = useAppStore((state) => state.toggleTheme);
   const toast = useToast();
 
   return (
-    <SafeAreaContainer>
+    <SafeAreaContainer edges={['top']}>
       <YStack flex={1} items="center" justify="center" p="$4" gap="$4">
-        <H1 size="$6">🚀 Allay Template</H1>
+        <H1 size="$6">🏠 Home</H1>
         <Text color="$color11" text="center">
-          Expo Router + TypeScript + Tamagui + Zustand
+          Welcome to the home tab
         </Text>
-
-        <Link href="/about" asChild>
-          <Button size="$4">Go to About →</Button>
-        </Link>
 
         <Button
           size="$3"

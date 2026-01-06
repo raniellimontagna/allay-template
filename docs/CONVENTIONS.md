@@ -375,17 +375,19 @@ The project uses **Jest** with **jest-expo** preset and **React Native Testing L
 
 ### Test Structure
 
+Tests are **colocated** with their source files (same folder):
+
 ```
-__tests__/
-├── components/
-│   ├── button.test.tsx      # Tests rendering
-│   └── useButton.test.ts    # Tests hook logic
-├── hooks/
-│   └── useLoadFonts.test.ts # Hook tests
-├── stores/
-│   └── appStore.test.ts     # Zustand store tests
-└── utils/
-    └── format.test.ts
+src/
+├── stores/appStore/
+│   ├── appStore.ts
+│   └── appStore.test.ts     # Tests for this store
+├── hooks/useHaptics/
+│   ├── useHaptics.ts
+│   └── useHaptics.test.ts   # Tests for this hook
+└── components/ui/loading/
+    ├── Loading.tsx
+    └── Loading.test.tsx     # Tests for this component
 ```
 
 ### Commands

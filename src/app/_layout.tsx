@@ -7,6 +7,7 @@ import { TamaguiProvider, Theme } from 'tamagui';
 
 import { Toast } from '@/components/ui/toast';
 import { useLoadFonts } from '@/hooks';
+import { QueryProvider } from '@/providers';
 import { useAppStore } from '@/stores';
 import config from '@/theme/tamagui.config';
 
@@ -27,15 +28,17 @@ export default function RootLayout() {
   }
 
   return (
-    <TamaguiProvider config={config}>
-      <Theme name={theme}>
-        <ToastProvider>
-          <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-          <Stack screenOptions={{ headerShown: false }} />
-          <Toast />
-          <ToastViewport flexDirection="column-reverse" top="$8" left={0} right={0} />
-        </ToastProvider>
-      </Theme>
-    </TamaguiProvider>
+    <QueryProvider>
+      <TamaguiProvider config={config}>
+        <Theme name={theme}>
+          <ToastProvider>
+            <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+            <Stack screenOptions={{ headerShown: false }} />
+            <Toast />
+            <ToastViewport flexDirection="column-reverse" top="$8" left={0} right={0} />
+          </ToastProvider>
+        </Theme>
+      </TamaguiProvider>
+    </QueryProvider>
   );
 }
