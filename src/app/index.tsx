@@ -3,7 +3,7 @@ import { Link } from 'expo-router';
 import { Button, H1, Text, XStack, YStack } from 'tamagui';
 
 import { SafeAreaContainer } from '@/components';
-import { useToast } from '@/components/ui/toast';
+import { useToast } from '@/components/ui';
 import { useAppStore } from '@/stores';
 
 export default function HomeScreen() {

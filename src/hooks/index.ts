@@ -1,1 +1,1 @@
-export { useLoadFonts } from './useLoadFonts';
+export { useLoadFonts } from './useLoadFonts/useLoadFonts';

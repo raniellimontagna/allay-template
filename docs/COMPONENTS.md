@@ -151,6 +151,29 @@ toast.show('Quick Info', {
 });
 ```
 
+### Loading
+Loading spinner component for async feedback.
+
+```tsx
+import { Loading } from '@/components/ui/loading';
+
+// Basic usage
+<Loading />
+
+// With message
+<Loading message="Loading data..." />
+
+// Different sizes: 'small' | 'medium' | 'large'
+<Loading size="small" />
+<Loading size="large" message="Processing..." />
+
+// Full screen overlay
+<Loading fullScreen message="Please wait..." />
+
+// Custom color
+<Loading color="#FF0000" />
+```
+
 ## Creating New Components
 
 ### 1. Folder structure

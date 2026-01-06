@@ -32,10 +32,13 @@ allay-template-with-tamagui/
 │   ├── theme/             # Tamagui configuration
 │   ├── types/             # TypeScript types
 │   └── utils/             # Utility functions
+├── __tests__/             # Unit and integration tests
 ├── assets/                # Images, fonts, etc.
 ├── app.json               # Expo configuration
 ├── babel.config.js        # Babel configuration
 ├── biome.json             # Biome configuration
+├── jest.config.js         # Jest configuration
+├── jest.setup.ts          # Jest setup (mocks)
 ├── tsconfig.json          # TypeScript configuration
 └── metro.config.js        # Metro bundler configuration
 ```
@@ -54,6 +57,11 @@ pnpm lint           # Run linter
 pnpm format         # Format code
 pnpm check          # Lint + format + fix
 pnpm typecheck      # TypeScript check
+
+# Tests
+pnpm test           # Run all tests
+pnpm test:watch     # Run tests in watch mode
+pnpm test:coverage  # Run tests with coverage report
 
 # Generate native folders (when needed)
 npx expo prebuild

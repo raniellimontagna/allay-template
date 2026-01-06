@@ -74,6 +74,10 @@ src/components/ui/button/
 └── index.ts          # Re-export
 ```
 
+**No Nested Ternaries**: Avoid nested ternary operators. Use `if/else`, `switch`, or early returns for better readability.
+  - ❌ `a ? b : c ? d : e`
+  - ✅ `if (a) return b; if (c) return d; return e;`
+
 ### Component Hook (Logic)
 
 ```typescript
@@ -360,17 +364,69 @@ const ONE_DAY_IN_MS = 24 * 60 * 60 * 1000;
 const expirationTime = Date.now() + ONE_DAY_IN_MS;
 ```
 
-## Tests (Future)
+## Tests
+
+The project uses **Jest** with **jest-expo** preset and **React Native Testing Library**.
+
+### Configuration Files
+
+- `jest.config.js` - Jest configuration
+- `jest.setup.ts` - Global mocks (AsyncStorage, etc.)
+
+### Test Structure
 
 ```
 __tests__/
 ├── components/
 │   ├── button.test.tsx      # Tests rendering
 │   └── useButton.test.ts    # Tests hook logic
+├── hooks/
+│   └── useLoadFonts.test.ts # Hook tests
 ├── stores/
-│   └── authStore.test.ts
+│   └── appStore.test.ts     # Zustand store tests
 └── utils/
     └── format.test.ts
+```
+
+### Commands
+
+```bash
+pnpm test           # Run all tests
+pnpm test:watch     # Run tests in watch mode
+pnpm test:coverage  # Run tests with coverage report
+```
+
+### Writing Tests
+
+```typescript
+// Store test example
+import { useAppStore } from '@/stores';
+
+beforeEach(() => {
+  useAppStore.setState({ theme: 'dark', isOnboarded: false });
+});
+
+describe('appStore', () => {
+  it('should toggle theme', () => {
+    useAppStore.getState().toggleTheme();
+    expect(useAppStore.getState().theme).toBe('light');
+  });
+});
+```
+
+```typescript
+// Hook test example
+import { renderHook } from '@testing-library/react-native';
+import { useLoadFonts } from '@/hooks';
+
+jest.mock('@expo-google-fonts/inter', () => ({
+  useFonts: () => [true, null],
+}));
+
+it('should return isReady true when fonts are loaded', () => {
+  const { result } = renderHook(() => useLoadFonts());
+  expect(result.current.isReady).toBe(true);
+});
 ```
 
 ## Git Commits
