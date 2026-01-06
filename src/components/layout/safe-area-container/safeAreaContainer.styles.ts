@@ -3,5 +3,5 @@ import { styled } from 'tamagui';
 
 export const StyledSafeAreaView = styled(SafeAreaView, {
   flex: 1,
-  background: '$background',
+  bg: '$background',
 });

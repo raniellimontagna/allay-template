@@ -131,6 +131,26 @@ import { SafeAreaContainer } from '@/components/layout/safe-area-container';
 </SafeAreaContainer>
 ```
 
+### Toast
+Global toast notification system powered by `@tamagui/toast`.
+
+```tsx
+import { useToast } from '@/components/ui/toast';
+
+const toast = useToast();
+
+// Show a success toast
+toast.show('Success!', {
+  message: 'Operation completed successfully.',
+  additionalInfo: { type: 'success' }, // 'success' | 'error' | 'warning' | 'info'
+});
+
+// Show with custom duration
+toast.show('Quick Info', {
+  duration: 1000,
+});
+```
+
 ## Creating New Components
 
 ### 1. Folder structure

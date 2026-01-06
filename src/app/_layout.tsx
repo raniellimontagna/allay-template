@@ -1,9 +1,11 @@
+import { ToastProvider, ToastViewport } from '@tamagui/toast';
 import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { TamaguiProvider, Theme } from 'tamagui';
 
+import { Toast } from '@/components/ui/toast';
 import { useLoadFonts } from '@/hooks';
 import { useAppStore } from '@/stores';
 import config from '@/theme/tamagui.config';
@@ -27,8 +29,12 @@ export default function RootLayout() {
   return (
     <TamaguiProvider config={config}>
       <Theme name={theme}>
-        <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
-        <Stack screenOptions={{ headerShown: false }} />
+        <ToastProvider>
+          <StatusBar style={theme === 'dark' ? 'light' : 'dark'} />
+          <Stack screenOptions={{ headerShown: false }} />
+          <Toast />
+          <ToastViewport flexDirection="column-reverse" top="$8" left={0} right={0} />
+        </ToastProvider>
       </Theme>
     </TamaguiProvider>
   );
