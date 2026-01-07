@@ -49,8 +49,24 @@ describe('SettingsGroup', () => {
   });
 
   it('should handle non-element children gracefully', () => {
-    render(<SettingsGroup>{'Not an element'}</SettingsGroup>);
+    render(
+      <SettingsGroup>
+        {'Not an element'}
+        {123}
+      </SettingsGroup>
+    );
 
     expect(screen.getByText('Not an element')).toBeTruthy();
+    expect(screen.getByText('123')).toBeTruthy();
+  });
+
+  it('should use explicit child keys when provided', () => {
+    render(
+      <SettingsGroup>
+        <Text key="custom-key">With Key</Text>
+      </SettingsGroup>
+    );
+
+    expect(screen.getByText('With Key')).toBeTruthy();
   });
 });

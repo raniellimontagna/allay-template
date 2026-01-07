@@ -98,4 +98,42 @@ describe('useNetwork', () => {
 
     expect(result.current.isOffline).toBe(true);
   });
+
+  it('should handle null/undefined isConnected in fetch', async () => {
+    mockFetch.mockResolvedValue({
+      isConnected: null,
+      isInternetReachable: null,
+      type: 'unknown',
+    });
+
+    const { result } = renderHook(() => useNetwork());
+
+    await waitFor(() => {
+      expect(result.current.isConnected).toBe(false);
+    });
+  });
+
+  it('should handle null/undefined isConnected in listener', async () => {
+    let networkCallback: (state: unknown) => void = () => {};
+    mockAddEventListener.mockImplementation((callback) => {
+      networkCallback = callback;
+      return jest.fn();
+    });
+
+    const { result } = renderHook(() => useNetwork());
+
+    await act(async () => {
+      await mockFetch();
+    });
+
+    act(() => {
+      networkCallback({
+        isConnected: undefined,
+        isInternetReachable: null,
+        type: 'unknown',
+      });
+    });
+
+    expect(result.current.isConnected).toBe(false);
+  });
 });

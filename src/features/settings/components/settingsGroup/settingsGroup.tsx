@@ -25,19 +25,20 @@ export function SettingsGroup({ title, children, footer }: SettingsGroupProps) {
       )}
 
       <YStack backgroundColor="$background" overflow="hidden" gap="$2">
-        {items.map((child, index) => (
-          <Fragment key={isValidElement(child) ? (child.key ?? `item-${index}`) : `item-${index}`}>
-            {isValidElement(child) ? (
-              child
-            ) : typeof child === 'string' || typeof child === 'number' ? (
-              <Text paddingHorizontal="$4" paddingVertical="$2">
-                {child}
-              </Text>
-            ) : (
-              child
-            )}
-          </Fragment>
-        ))}
+        {items.map((child, index) => {
+          const key = isValidElement(child) ? child.key : `item-${index}`;
+          return (
+            <Fragment key={key}>
+              {isValidElement(child) ? (
+                child
+              ) : (
+                <Text paddingHorizontal="$4" paddingVertical="$2">
+                  {child}
+                </Text>
+              )}
+            </Fragment>
+          );
+        })}
       </YStack>
 
       {footer && (
