@@ -18,9 +18,22 @@ src/components/
 │       ├── container.tsx
 │       ├── useContainer.ts
 │       └── index.ts
-└── features/     # Feature-specific components
+components/
+├── ui/           # Primitive components
+│   └── button/
+│       ├── button.tsx
+│       ├── useButton.ts
+│       └── index.ts
+├── layout/       # Layout components
+│   └── container/
+│       ├── container.tsx
+│       ├── useContainer.ts
+│       └── index.ts
+└── features/     # Feature-specific components (shared)
     └── ...
 ```
+
+> **Note:** Feature-specific components that are **not** shared should be located within their respective feature directory (e.g., `src/features/settings/components/`). Identifiable by their domain specificity. `src/components/features` is for components that are feature-related but used across multiple features or screens.
 
 ## UI Components
 

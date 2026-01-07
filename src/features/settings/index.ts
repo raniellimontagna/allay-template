@@ -1,4 +1,5 @@
 export * from './components/settingsGroup';
 export * from './components/settingsItem';
-export { LanguageSheet } from './languageSheet';
-export { ThemeSheet } from './themeSheet';
+export { SettingsScreen } from './screens/settingsScreen';
+export { LanguageSheet } from './sheets/languageSheet/languageSheet';
+export { ThemeSheet } from './sheets/themeSheet/themeSheet';

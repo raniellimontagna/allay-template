@@ -42,10 +42,24 @@ Reusable components built with Tamagui.
 components/
 ├── ui/           # Base components (Button, Input, Card)
 ├── layout/       # Layout components (Container, Header)
-└── features/     # Feature-specific components
+└── features/     # Shared feature components (reusable across features)
 ```
 
-### 3. `src/stores/` - Global State (Zustand)
+### 3. `src/features/` - Attributes
+
+Self-contained modules that group screens, components, API calls, and state for a specific domain.
+
+```
+features/
+├── auth/
+├── settings/
+│   ├── screens/      # Feature-specific screens
+│   ├── components/   # Feature-specific components
+│   └── index.ts      # Public API
+└── ...
+```
+
+### 4. `src/stores/` - Global State (Zustand)
 
 State management with Zustand.
 
@@ -75,7 +89,7 @@ export const useAppStore = create<AppStore>()(
 );
 ```
 
-### 4. `src/hooks/` - Custom Hooks
+### 5. `src/hooks/` - Custom Hooks
 
 Reusable logic encapsulated in hooks.
 
@@ -86,7 +100,7 @@ hooks/
 └── useStorage.ts     # AsyncStorage wrapper
 ```
 
-### 5. `src/theme/` - Tamagui Config
+### 6. `src/theme/` - Tamagui Config
 
 Design system configuration.
 
@@ -97,7 +111,7 @@ theme/
 └── themes.ts           # Light/dark themes
 ```
 
-### 6. `src/types/` - TypeScript Types
+### 7. `src/types/` - TypeScript Types
 
 Global types and interfaces.
 
@@ -108,7 +122,7 @@ types/
 └── models.ts       # Data models
 ```
 
-### 7. `src/utils/` - Utilities
+### 8. `src/utils/` - Utilities
 
 Pure helper functions.
 
