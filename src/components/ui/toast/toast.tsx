@@ -49,6 +49,7 @@ export function Toast() {
 
   return (
     <TamaguiToast
+      testID="toast-component"
       key={currentToast.id}
       duration={currentToast.duration}
       enterStyle={{ opacity: 0, scale: 0.95, y: -10 }}

@@ -47,4 +47,10 @@ describe('SettingsGroup', () => {
     expect(screen.getByText('Manage your account settings')).toBeTruthy();
     expect(screen.getByText('Profile')).toBeTruthy();
   });
+
+  it('should handle non-element children gracefully', () => {
+    render(<SettingsGroup>{'Not an element'}</SettingsGroup>);
+
+    expect(screen.getByText('Not an element')).toBeTruthy();
+  });
 });

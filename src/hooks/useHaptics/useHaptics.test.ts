@@ -18,7 +18,7 @@ jest.mock('expo-haptics', () => ({
   selectionAsync: jest.fn(),
 }));
 
-import { useHaptics } from './useHaptics';
+import { useHaptics, type HapticStyle } from './useHaptics';
 
 describe('useHaptics', () => {
   beforeEach(() => {
@@ -74,10 +74,44 @@ describe('useHaptics', () => {
     expect(Haptics.selectionAsync).toHaveBeenCalled();
   });
 
+  it('should call notificationAsync with Warning on warning()', async () => {
+    const { warning } = useHaptics();
+    await warning();
+    expect(Haptics.notificationAsync).toHaveBeenCalledWith('warning');
+  });
+
+  it('should call notificationAsync with Error on error()', async () => {
+    const { error } = useHaptics();
+    await error();
+    expect(Haptics.notificationAsync).toHaveBeenCalledWith('error');
+  });
+
+  it('should use default style light on trigger()', async () => {
+    const { trigger } = useHaptics();
+    await trigger();
+    expect(Haptics.impactAsync).toHaveBeenCalledWith('light');
+  });
+
   it('should not trigger haptics on web', async () => {
     Platform.OS = 'web';
     const { light } = useHaptics();
     await light();
     expect(Haptics.impactAsync).not.toHaveBeenCalled();
+  });
+
+  it('should fail silently if haptics throw', async () => {
+    (Haptics.selectionAsync as jest.Mock).mockRejectedValueOnce(new Error('Haptics failed'));
+    const { selection } = useHaptics();
+
+    // Should not throw
+    await expect(selection()).resolves.not.toThrow();
+  });
+
+  it('should do nothing for invalid style', async () => {
+    const { trigger } = useHaptics();
+    await trigger('invalid' as unknown as HapticStyle);
+    expect(Haptics.impactAsync).not.toHaveBeenCalled();
+    expect(Haptics.notificationAsync).not.toHaveBeenCalled();
+    expect(Haptics.selectionAsync).not.toHaveBeenCalled();
   });
 });

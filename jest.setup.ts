@@ -47,8 +47,8 @@ jest.mock('react-native-reanimated', () => {
       },
     },
     useSharedValue: jest.fn((v) => ({ value: v })),
-    useAnimatedStyle: jest.fn(() => ({})),
-    useAnimatedProps: jest.fn(() => ({})),
+    useAnimatedStyle: jest.fn((fn) => fn()),
+    useAnimatedProps: jest.fn((fn) => fn()),
     useDerivedValue: jest.fn((fn) => ({ value: fn() })),
     withTiming: jest.fn((v) => v),
     withSpring: jest.fn((v) => v),
@@ -115,27 +115,42 @@ jest.mock('@gorhom/bottom-sheet', () => {
   const ReactNative = require('react-native');
   return {
     __esModule: true,
-    BottomSheetModal: React.forwardRef(({ children }: any, ref: any) => {
+    BottomSheetModal: React.forwardRef(({ children, onDismiss, backdropComponent }: any, ref: any) => {
       React.useImperativeHandle(ref, () => ({
         present: jest.fn(),
-        dismiss: jest.fn(),
+        dismiss: () => onDismiss?.(),
         snapToIndex: jest.fn(),
         snapToPosition: jest.fn(),
         expand: jest.fn(),
         collapse: jest.fn(),
         close: jest.fn(),
       }));
-      return React.createElement(ReactNative.View, {}, children);
+      return React.createElement(ReactNative.View, {}, [
+        backdropComponent && React.createElement(backdropComponent, { key: 'backdrop' }),
+        React.createElement(ReactNative.Button, {
+          title: 'Close',
+          onPress: onDismiss,
+          key: 'close-button',
+        }),
+        children,
+      ]);
     }),
     BottomSheetModalProvider: ({ children }: any) => children,
     BottomSheetView: ReactNative.View,
     BottomSheetBackdrop: () => null,
-    default: React.forwardRef(({ children }: any, ref: any) => {
+    default: React.forwardRef(({ children, onClose }: any, ref: any) => {
       React.useImperativeHandle(ref, () => ({
         snapToIndex: jest.fn(),
-        close: jest.fn(),
+        close: () => onClose?.(),
       }));
-      return React.createElement(ReactNative.View, {}, children);
+      return React.createElement(ReactNative.View, {}, [
+        React.createElement(ReactNative.Button, {
+          title: 'Close',
+          onPress: onClose,
+          key: 'close-button',
+        }),
+        children,
+      ]);
     }),
   };
 });
@@ -171,6 +186,21 @@ jest.mock('expo-router', () => ({
   },
   Tabs: {
     Screen: jest.fn(() => null),
+  },
+}));
+
+// Mock react-i18next
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+    i18n: {
+      changeLanguage: jest.fn(),
+      language: 'en',
+    },
+  }),
+  initReactI18next: {
+    type: '3rdParty',
+    init: jest.fn(),
   },
 }));
 

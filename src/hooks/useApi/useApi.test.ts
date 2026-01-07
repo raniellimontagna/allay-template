@@ -155,13 +155,19 @@ describe('useApi hooks', () => {
   });
 
   describe('useInvalidateQueries', () => {
-    it('should return invalidation functions', () => {
+    it('should return functional invalidation functions', async () => {
       const { result } = renderHookWithProviders(() => useInvalidateQueries());
 
-      expect(result.current).toHaveProperty('invalidate');
-      expect(result.current).toHaveProperty('invalidateAll');
-      expect(result.current).toHaveProperty('removeQueries');
       expect(typeof result.current.invalidate).toBe('function');
+      expect(typeof result.current.invalidateAll).toBe('function');
+      expect(typeof result.current.removeQueries).toBe('function');
+
+      // Test execution (should not throw)
+      await act(async () => {
+        result.current.invalidate(['test']);
+        result.current.invalidateAll();
+        result.current.removeQueries(['test']);
+      });
     });
   });
 });
