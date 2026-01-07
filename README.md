@@ -1,4 +1,4 @@
-# Allay Template
+# Allay
 
 Functional template for React Native apps using Expo, Tamagui, Expo Router, and Zustand.
 

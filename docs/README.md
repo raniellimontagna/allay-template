@@ -20,7 +20,7 @@ Functional template for React Native apps using Expo, Tamagui, Expo Router, and 
 ## 📁 Project Structure
 
 ```
-allay-template-with-tamagui/
+allay/
 ├── docs/                   # Documentation
 │   ├── README.md          # This file
 │   ├── ARCHITECTURE.md    # Project architecture

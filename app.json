@@ -1,20 +1,21 @@
 {
   "expo": {
-    "name": "allay-template-with-tamagui",
-    "slug": "allay-template-with-tamagui",
+    "name": "allay",
+    "slug": "allay",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
-    "scheme": "allay-template",
+    "scheme": "allay",
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anonymous.allay"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,7 +23,7 @@
         "backgroundColor": "#ffffff"
       },
       "edgeToEdgeEnabled": true,
-      "package": "com.anonymous.allaytemplatewithtamagui"
+      "package": "com.anonymous.allay"
     },
     "web": {
       "favicon": "./assets/favicon.png",
