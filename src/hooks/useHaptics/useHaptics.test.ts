@@ -18,7 +18,7 @@ jest.mock('expo-haptics', () => ({
   selectionAsync: jest.fn(),
 }));
 
-import { useHaptics, type HapticStyle } from './useHaptics';
+import { type HapticStyle, useHaptics } from './useHaptics';
 
 describe('useHaptics', () => {
   beforeEach(() => {
