@@ -75,3 +75,4 @@ npx expo prebuild
 - [Architecture](./ARCHITECTURE.md) - Project architecture details
 - [Conventions](./CONVENTIONS.md) - Code patterns and naming
 - [Components](./COMPONENTS.md) - UI component documentation
+- [CI/CD](./CI.md) - Continuous Integration pipeline
