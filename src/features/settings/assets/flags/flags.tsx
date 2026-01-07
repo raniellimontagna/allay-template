@@ -1,7 +1,7 @@
 import Svg, { Circle, G, Mask, Path, Rect } from 'react-native-svg';
 
 export const USFlag = ({ size = 24 }: { size?: number }) => (
-  <Svg width={size} height={size} viewBox="0 0 90 90" fill="none">
+  <Svg width={size} height={size} viewBox="0 0 90 90" fill="none" testID="USFlag">
     <Circle cx="44" cy="45" r="40" fill="#F2F0F2" />
     <Mask
       id="mask0_2_248"
@@ -56,7 +56,7 @@ export const USFlag = ({ size = 24 }: { size?: number }) => (
 );
 
 export const BRFlag = ({ size = 24 }: { size?: number }) => (
-  <Svg width={size} height={size} viewBox="0 0 90 90" fill="none">
+  <Svg width={size} height={size} viewBox="0 0 90 90" fill="none" testID="BRFlag">
     <Path
       d="M84 45C84 67.0914 66.0914 85 44 85C21.9086 85 4 67.0914 4 45C4 22.9086 21.9086 5 44 5C66.0914 5 84 22.9086 84 45Z"
       fill="#6EA644"
@@ -74,7 +74,7 @@ export const BRFlag = ({ size = 24 }: { size?: number }) => (
 );
 
 export const ESFlag = ({ size = 24 }: { size?: number }) => (
-  <Svg width={size} height={size} viewBox="0 0 90 90" fill="none">
+  <Svg width={size} height={size} viewBox="0 0 90 90" fill="none" testID="ESFlag">
     <Path
       d="M44 85C21.9086 85 4 67.0914 4 45C4 22.9086 21.9086 5 44 5C66.0914 5 84 22.9086 84 45C84 67.0914 66.0914 85 44 85Z"
       fill="#FFDB44"

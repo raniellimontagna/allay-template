@@ -6,7 +6,7 @@ import { Text, useTheme, XStack, YStack } from 'tamagui';
 import { AnimatedScaleButton, BottomSheet, useToast } from '@/components/ui';
 import { changeLanguage, getCurrentLanguage } from '@/lib';
 import { SUPPORTED_LANGUAGES, type SupportedLanguage } from '@/locales';
-import { BRFlag, ESFlag, USFlag } from '../../components/flags';
+import { BRFlag, ESFlag, USFlag } from '../../assets/flags/flags';
 
 interface LanguageSheetProps {
   isOpen: boolean;
