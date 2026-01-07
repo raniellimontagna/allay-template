@@ -22,11 +22,11 @@ describe('Loading', () => {
     expect(screen.getByText('Please wait...')).toBeTruthy();
   });
 
-  it('should accept different sizes', () => {
-    const { rerender } = render(<Loading size="small" />);
-    expect(screen.root).toBeTruthy();
+  it('should accept different sizes with messages', () => {
+    render(<Loading size="small" message="Small Loading" />);
+    expect(screen.getByText('Small Loading')).toBeTruthy();
 
-    rerender(<Loading size="large" />);
-    expect(screen.root).toBeTruthy();
+    render(<Loading size="large" message="Large Loading" />);
+    expect(screen.getByText('Large Loading')).toBeTruthy();
   });
 });
