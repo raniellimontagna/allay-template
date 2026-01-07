@@ -1,8 +1,10 @@
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { defaultConfig } from '@tamagui/config/v4';
 import { ToastProvider, ToastViewport } from '@tamagui/toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { type RenderOptions, render, renderHook } from '@testing-library/react-native';
 import { type ReactElement, type ReactNode, useMemo } from 'react';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { createTamagui, TamaguiProvider } from 'tamagui';
 
 const tamaguiConfig = createTamagui(defaultConfig);
@@ -35,14 +37,18 @@ interface ProvidersProps {
 export function AllProviders({ children }: ProvidersProps) {
   const queryClient = useMemo(() => createTestQueryClient(), []);
   return (
-    <QueryClientProvider client={queryClient}>
-      <TamaguiProvider config={tamaguiConfig}>
-        <ToastProvider>
-          {children}
-          <ToastViewport />
-        </ToastProvider>
-      </TamaguiProvider>
-    </QueryClientProvider>
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <QueryClientProvider client={queryClient}>
+        <TamaguiProvider config={tamaguiConfig}>
+          <ToastProvider>
+            <BottomSheetModalProvider>
+              {children}
+              <ToastViewport />
+            </BottomSheetModalProvider>
+          </ToastProvider>
+        </TamaguiProvider>
+      </QueryClientProvider>
+    </GestureHandlerRootView>
   );
 }
 
